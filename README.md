@@ -1,9 +1,10 @@
-# GApp-Script-Slack-Birthday-Bot
+# A Google Apps Script that connects to your Google Calendar and sends birthday messages to Slack
 
 ![Message Preview](screenshots/message.png)
 
-## A Google Apps Script that connects to your Google Calendar and sends birthday messages to Slack
+The idea behind using Google Apps Script is that it allows you to set up time-based jobs for free.
 
+## Setup
 Ensure that the description of your calendar events is the person's name.
 
 ![Calendar Event](screenshots/calevent.png)
