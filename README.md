@@ -1,24 +1,21 @@
 # GApp-Script-Slack-Birthday-Bot
 
-![message image](screenshots/message.png)
+![Message Preview](screenshots/message.png)
 
-## Google Apps Script that connects to your google calendar and sends a birthday message to slack
+## A Google Apps Script that connects to your Google Calendar and sends birthday messages to Slack
 
-Your calendar event descriptions should be the person's name.
+Ensure that the description of your calendar events is the person's name.
 
-![cal event](screenshots/calevent.png)
+![Calendar Event](screenshots/calevent.png)
 
-Copy and paste this script into a Google Cloud Apps Script project at https://script.google.com
+To get started, copy and paste this script into a Google Cloud Apps Script project at [Google Apps Script](https://script.google.com).
 
-You will need to replace  `WEBHOOK_URL` and `CALENDAR_ID` in the script with your [Slack Webhook URL](https://slack.com/marketplace/A0F7XDUAZ) and your Google Calendar's [Calendar ID](https://docs.simplecalendar.io/find-google-calendar-id/) respectively. You can also modify `minInAdvance` to change the amount of minutes ahead of time the events should show up. The default value should be 1 minute.
+You will need to replace `WEBHOOK_URL` and `CALENDAR_ID` in the script with your [Slack Webhook URL](https://slack.com/marketplace/A0F7XDUAZ) and your Google Calendar's [Calendar ID](https://docs.simplecalendar.io/find-google-calendar-id/) respectively. You can also adjust the `minInAdvance` variable to change how many minutes before an event it will appear—by default, this is set to 1 minute.
 
-Then, you must enable Calendar API under Services on the left side of the Apps Script Page. Click the + button next to Services and look for Calendar API and enable it. v3 of the Calendar API should work fine.
+Next, enable the Calendar API in the Apps Script by navigating to **Services** on the left-hand side. Click the + button, search for the **Calendar API**, and enable it. Version 3 of the Calendar API will work perfectly.
 
+Next, set up a trigger to run the `postEventsToChannel`` function every minute by navigating to Triggers in the Apps Script interface. Click the + Add Trigger button, select postEventsToChannel from the dropdown, and set it to run every minute.
 
-You Will then need to setup a trigger to run the `postEventsToChannel` function every minute
-![trigger](screenshots/trigger.png)
+![Trigger Setup](screenshots/trigger.png)
 
-You should see any events that will start within the next minute posted into an embed into the discord channel your webhook was on
-
-
-
+With everything set up, you’ll see upcoming events (starting within the next minute) posted as an embed in the Slack channel connected to your webhook.
