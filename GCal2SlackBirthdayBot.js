@@ -1,7 +1,7 @@
 // This Google Apps Script Will Send a POST to a Slack Webhook creating a messages of any events starting within the next minute of execution. It will use the event description as the person's name.
 // Any events that have already started will not appear. 
 // This script should be triggered every minute using Google Triggers.
-const WEBHOOK_URL = ""; 
+const WEBHOOK_URL = "";
 const CALENDAR_ID = "";
 const NO_VALUE_FOUND = "N/A";
 const minsInAdvance = 1; // Set the number of minutes in advance you'd like events to be posted to Slack. Must be 1 or greater
@@ -19,7 +19,7 @@ function postEventsToChannel() {
     singleEvents: true,
     orderBy: 'startTime'
   };
-  
+
   let response = Calendar.Events.list(CALENDAR_ID, optionalArgs);
   let events = response.items;
   Logger.log(`Found ${events.length} events`);
@@ -36,49 +36,48 @@ function postEventsToChannel() {
       }
 
       // Build the POST request for Slack
-     let options = {
-      "method": "post",
-      "headers": {
-        "Content-Type": "application/json",
-      },
-      "payload": JSON.stringify({
-        "blocks": [
-          {
-            "type": "header",
-            "text": {
-              "type": "plain_text",
-              "text": `🎉 It's ${event.description}'s Birthday Today! 🥳`,
-              "emoji": true
-            }
-          },
-          {
-            "type": "section",
-            "text": {
-              "type": "mrkdwn",
-              "text": `:alert: Prepare the confetti cannons and inflate the balloons! 🎈 Because ${event.description} is officially one year closer to getting senior citizen discounts.`
-            },
-            "accessory": {
-              "type": "image",
-              "image_url": "https://cdn-icons-png.flaticon.com/512/2454/2454297.png", // Replace with your preferred birthday icon
-              "alt_text": "birthday cake"
-            }
-          },
-          {
-            "type": "divider"
-          },
-          {
-            "type": "context",
-            "elements": [
-              {
-                "type": "mrkdwn",
-                "text": `:celebrate: Don't forget to wish them a happy birthday! :angry-gun-man:`
+      let options = {
+        "method": "post",
+        "headers": {
+          "Content-Type": "application/json",
+        },
+        "payload": JSON.stringify({
+          "blocks": [
+            {
+              "type": "header",
+              "text": {
+                "type": "plain_text",
+                "text": `🎉 It's ${event.description}'s Birthday Today! 🥳`,
+                "emoji": true
               }
-            ]
-          }
-        ]
-      })
-    };
-
+            },
+            {
+              "type": "section",
+              "text": {
+                "type": "mrkdwn",
+                "text": `:alert: Prepare the confetti cannons and inflate the balloons! 🎈 Because ${event.description} is officially one year closer to getting senior citizen discounts.`
+              },
+              "accessory": {
+                "type": "image",
+                "image_url": "https://cdn-icons-png.flaticon.com/512/2454/2454297.png", // Replace with your preferred birthday icon
+                "alt_text": "birthday cake"
+              }
+            },
+            {
+              "type": "divider"
+            },
+            {
+              "type": "context",
+              "elements": [
+                {
+                  "type": "mrkdwn",
+                  "text": `:celebrate: Don't forget to wish them a happy birthday! :angry-gun-man:`
+                }
+              ]
+            }
+          ]
+        })
+      };
 
       Logger.log(options, null, 2);
       UrlFetchApp.fetch(WEBHOOK_URL, options);
