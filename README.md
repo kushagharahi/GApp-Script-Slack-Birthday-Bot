@@ -1,10 +1,12 @@
 # GApp-Script-Slack-Birthday-Bot
 
-![image](message.png)
+![message image](screenshots/message.png)
 
 ## Google Apps Script that connects to your google calendar and sends a birthday message to slack
 
 Your calendar event descriptions should be the person's name.
+
+![cal event](screenshots/calevent.png)
 
 Copy and paste this script into a Google Cloud Apps Script project at https://script.google.com
 
@@ -14,7 +16,7 @@ Then, you must enable Calendar API under Services on the left side of the Apps S
 
 
 You Will then need to setup a trigger to run the `postEventsToChannel` function every minute
-![image](https://user-images.githubusercontent.com/68816695/133913045-da937bd5-c53f-4028-af5b-22874df2e798.png)
+![trigger](screenshots/trigger.png)
 
 You should see any events that will start within the next minute posted into an embed into the discord channel your webhook was on
 
